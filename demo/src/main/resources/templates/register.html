@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,18 +10,18 @@
 <body>
 <div class="wrapper">
   <div class="form-wrapper sign-in">
-    <form action="/register" method="post">
+    <form action="/login" method="POST">
       <h2>Login</h2>
       <div class="input-group">
         <input type="text" name="username" required>
-        <label for="username">Username</label>
+        <label for="">Username</label>
       </div>
       <div class="input-group">
         <input type="password" name="password" required>
-        <label for="password">Password</label>
+        <label for="">Password</label>
       </div>
       <div class="remember">
-        <label><input type="checkbox"> Remember me</label>
+        <label><input type="checkbox" name="remember"> Remember me</label>
       </div>
       <button type="submit">Login</button>
       <div class="signUp-link">
@@ -31,22 +30,22 @@
     </form>
   </div>
   <div class="form-wrapper sign-up">
-    <form action="/register" method="post">
+    <form action="/register" method="POST">
       <h2>Sign Up</h2>
       <div class="input-group">
-        <input type="text" name="username" id="username" required>
-        <label for="username">Username</label>
+        <input type="text" name="username" required>
+        <label for="">Username</label>
       </div>
       <div class="input-group">
-        <input type="email" name="email" id="email" required>
-        <label for="email">Email</label>
+        <input type="email" name="email" required>
+        <label for="">Email</label>
       </div>
       <div class="input-group">
-        <input type="password" name="password" id="password" required>
-        <label for="password">Password</label>
+        <input type="password" name="password" required>
+        <label for="">Password</label>
       </div>
       <div class="remember">
-        <label><input type="checkbox"> I agree to the terms & conditions</label>
+        <label><input type="checkbox" name="agree"> I agree to the terms & conditions</label>
       </div>
       <button type="submit">Sign Up</button>
       <div class="signUp-link">
@@ -55,19 +54,18 @@
     </form>
   </div>
 </div>
-
-<script>
-  // JavaScript для перенаправления пользователя после успешного входа
-  window.onload = function() {
-    // Проверяем, есть ли параметр "login" в URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const loginParam = urlParams.get('login');
-    // Если параметр "login" равен "success", перенаправляем пользователя на главную страницу казино
-    if (loginParam === 'success') {
-      window.location.href = '/Main'; // Замените '/Main' на реальный URL вашей страницы казино
-    }
-  };
-</script>
+<!--<script>-->
+<!--  // JavaScript для перенаправления пользователя после успешного входа-->
+<!--  window.onload = function() {-->
+<!--    // Проверяем, есть ли параметр "login" в URL-->
+<!--    const urlParams = new URLSearchParams(window.location.search);-->
+<!--    const loginParam = urlParams.get('login');-->
+<!--    // Если параметр "login" равен "success", перенаправляем пользователя на главную страницу казино-->
+<!--    if (loginParam === 'success') {-->
+<!--      window.location.href = '/Main'; // Замените '/Main' на реальный URL вашей страницы казино-->
+<!--    }-->
+<!--  };-->
+<!--</script>-->
 <script src="script.js"></script>
 </body>
 </html>

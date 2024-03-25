@@ -1,16 +1,20 @@
 package com.example.demo.Controller;
 
-import ch.qos.logback.core.model.Model;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.ui.Model;
 import com.example.demo.Server.UserService;
 import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 @Controller
 public class MainController {
+    @Autowired
+    private UserRepository userRepository;
 
     private final UserService userService;
 
@@ -31,12 +35,21 @@ public class MainController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "register";
     }
 
     @GetMapping("/register")
     public String registerPage() {
         return "register";
+    }
+    @PostMapping("/register")
+    public String saveUser(@ModelAttribute("user") User user, Model model) {
+        // Проверяем, существует ли пользователь с таким же именем пользователя или адресом электронной почты
+
+            // Если пользователя с таким именем пользователя или адресом электронной почты нет, сохраняем нового пользователя
+            userRepository.save(user);
+            model.addAttribute("message", "Submitted Successfully");
+            return "redirect:/Main";
     }
 
     @GetMapping("/Main")
@@ -52,12 +65,15 @@ public class MainController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, @Autowired Model model) {
+    public String loginUser(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
         User user = userService.authenticate(username, password);
         if (user != null) {
-            return "login";
+            session.setAttribute("user", user);
+            model.addAttribute("message", "User successfully authenticated");
+            return "redirect:/Main";
         } else {
-            return "login";
+            model.addAttribute("message", "Authentication failed");
+            return "register";
         }
     }
 
