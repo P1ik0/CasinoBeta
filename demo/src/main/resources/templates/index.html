@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css"> <!-- Подключение вашего стиля -->
+</head>
+<body>
+<div class="wrapper">
+    <h2>Login</h2>
+    <form action="/Main" method="GET"> <!-- Изменение атрибута action на URL страницы "Main" и добавление метода GET -->
+        <div class="input-box">
+            <input type="text" name="username" placeholder="Нікнейм" required> <!-- Добавление поля для ввода никнейма -->
+        </div>
+        <div class="input-box">
+            <input type="password" name="password" placeholder="Пароль" required> <!-- Поле для ввода пароля -->
+        </div>
+        <div class="input-box button">
+            <input type="submit" value="Увійти"> <!-- Изменение type на "submit" для кнопки отправки формы -->
+        </div>
+        <div class="text">
+            <h3>Ще не маєте рахунку?<a href="/register" target="_self">Зареєструватися</a></h3> <!-- Ссылка на страницу регистрации -->
+        </div>
+    </form>
+</div>
+<script>
+    // JavaScript для перенаправления пользователя после успешного входа
+    window.onload = function() {
+        // Проверяем, есть ли параметр "login" в URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const loginParam = urlParams.get('login');
+        // Если параметр "login" равен "success", перенаправляем пользователя на главную страницу казино
+        if (loginParam === 'success') {
+            window.location.href = '/Main'; // Замените '/Main' на реальный URL вашей страницы казино
+        }
+    };
+</script>
+</body>
+</html>

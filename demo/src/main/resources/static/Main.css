@@ -1,0 +1,152 @@
+.Box_gap--3La {
+    gap: 24px;
+    flex-direction: column;
+    flex: 1 1 0%;
+}
+
+.Box_justify_center--yR5 {
+    justify-content: center;
+}
+
+.Box_box--BuJ {
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+}
+
+body {
+    background-color: #000036;
+    --fontFamily: "Gilroy", Arial, Helvetica, sans-serif;
+    margin-top: 80px;
+    font-family: var(--fontFamily);
+}
+.slots-heading,
+.roulette-heading {
+    font-size: 18px; /* Добавлено для уменьшения размера заголовков */
+    text-align: center;
+    color: #bfbfcb;
+}
+
+.divider {
+    width: 60%; /* Уменьшаем ширину полоски */
+    margin: 0 auto 20px auto;
+    border: 1px solid #bfbfcb;
+}
+.top-panel {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 54, 0.6);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 999;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.register-btn,
+.login-btn {
+    color: #3ff;
+    background-color: transparent;
+    border: 1px solid #3ff;
+    padding: 6px 15px;
+    margin-left: 8px;
+    cursor: pointer;
+    border-radius: 19px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.register-btn:hover,
+.login-btn:hover {
+    color: #000036;
+    background-color: #3ff;
+    border-color: #3ff;
+}
+
+.sidebar {
+    position: fixed;
+    display: block;
+    top: 90px;
+    left: 8px;
+    width: 220px; /* увеличил ширину на 100px */
+    height: 85%;
+    background-color: #1e2150;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 11px;
+    border: 1px solid #343761;
+    color: #bfbfcb;
+    line-height: 2;
+    z-index: 9999;
+}
+
+.sidebar-content p {
+    margin: 0;
+}
+
+.content {
+    margin-left: 100px; /* увеличил отступ на 100px */
+    height: 100%;
+    padding-left: 20px;
+}
+.roulette-row,
+.slot-row {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+.roulette-row img,
+.slot-row img {
+    width: 150px;
+    height: 225px;
+    margin: 6px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    z-index: 0; /* Задаем самый низкий z-index для картинок слотов */
+}
+
+.reclama-container {
+    position: absolute;
+    top: 30px;
+    left: 60px;
+    right: 0;
+    justify-content: end;
+    padding: 10px;
+    z-index: 0; /* Устанавливаем выше чем блок слева */
+}
+@media (min-width: 992px) {
+    .sidebar {
+        width: 25%; /* Ширина блока слева на экранах шире 992px */
+    }
+
+    .content {
+        margin-left: 25%; /* Отступ контента от левого края на экранах шире 992px */
+    }
+}.sidebar {
+     position: fixed;
+     top: 70px;
+     left: 8px;
+     width: 200px;
+     height: calc(100% - 140px); /* Высота страницы минус отступы сверху и снизу */
+     background-color: #1e2150;
+     padding: 20px;
+     box-sizing: border-box;
+     border-radius: 11px;
+     border: 1px solid #343761;
+     color: #bfbfcb;
+     line-height: 2;
+     z-index: 9999; /* Устанавливаем высокий z-index, чтобы блок был поверх других элементов */
+ }
+.roulette-container,
+.slot-container {
+    max-width: 1900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    right: 4px;
+    overflow: hidden; /* Добавлено свойство overflow: hidden; */
+}
+
