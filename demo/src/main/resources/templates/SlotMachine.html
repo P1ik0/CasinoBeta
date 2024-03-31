@@ -1,0 +1,66 @@
+<!DOCTYPE html> <!-- Это объявление типа документа HTML -->
+<html lang="en"> <!-- Открываем тег <html> с указанием языка документа -->
+<head>
+    <meta charset="UTF-8"> <!-- Устанавливаем кодировку символов на UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Определяем метаданные для масштабирования страницы на мобильных устройствах -->
+    <title>Slot Machine Game</title> <!-- Устанавливаем заголовок страницы -->
+    <link rel="stylesheet" href="/css/SlotMachine.css"> <!-- Подключаем файл стилей -->
+</head>
+<div class="slot-machine">
+    <div class="reel">
+        <div class="slot">🍒</div>
+        <div class="slot">🍋</div>
+        <div class="slot">🍊</div>
+        <div class="slot">🍇</div>
+        <div class="slot">🍉</div>
+        <div class="slot">🍭</div> <!-- Символ конфеты -->
+    </div>
+    <div class="reel">
+        <div class="slot">🍋</div>
+        <div class="slot">🍊</div>
+        <div class="slot">🍇</div>
+        <div class="slot">🍉</div>
+        <div class="slot">🍏</div>
+        <div class="slot">🍆</div> <!-- Символ баклажана -->
+    </div>
+    <div class="reel">
+        <div class="slot">🍊</div>
+        <div class="slot">🍇</div>
+        <div class="slot">🍉</div>
+        <div class="slot">🍏</div>
+        <div class="slot">🍒</div>
+        <div class="slot">🍭</div> <!-- Символ конфеты -->
+    </div>
+    <div class="reel">
+        <div class="slot">🍇</div>
+        <div class="slot">🍉</div>
+        <div class="slot">🍏</div>
+        <div class="slot">🍒</div>
+        <div class="slot">🍋</div>
+        <div class="slot">🍆</div> <!-- Символ баклажана -->
+    </div>
+    <div class="reel">
+        <div class="slot">🍉</div>
+        <div class="slot">🍏</div>
+        <div class="slot">🍒</div>
+        <div class="slot">🍋</div>
+        <div class="slot">🍊</div>
+        <div class="slot">🍭</div> <!-- Символ конфеты -->
+    </div>
+    <div class="reel">
+        <div class="slot">🍏</div>
+        <div class="slot">🍒</div>
+        <div class="slot">🍋</div>
+        <div class="slot">🍊</div>
+        <div class="slot">🍇</div>
+        <div class="slot">🍆</div> <!-- Символ баклажана -->
+    </div>   <div>
+    <p>Баланс: <span id="balance">2000</span></p>
+    <p id="result"></p>
+    <p id="roundInfo">Текущий круг: 0. Выигрыш: 0</p>
+</div>
+    <button id="spinBtn">Spin</button>
+
+    <script src="/js/SlotMachine.js"></script>
+    </div>
+</html>

@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Form</title>
+    <link rel="stylesheet" href="/css/deposit.css">
+</head>
+<body>
+
+<div class="tips">
+    Payment card number: (4) VISA, (51 -> 55) MasterCard, (36-38-39) DinersClub, (34-37) American Express, (65) Discover, (5019) dankort
+</div>
+
+<div class="container">
+    <div class="col1">
+        <div class="card">
+            <div class="front">
+                <div class="type">
+                    <img class="bankid"/>
+                </div>
+                <span class="chip"></span>
+                <span class="card_number">&#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; </span>
+                <div class="date"><span class="date_value">MM / YYYY</span></div>
+                <span class="fullname">FULL NAME</span>
+            </div>
+            <div class="back">
+                <div class="magnetic"></div>
+                <div class="bar"></div>
+                <span class="seccode">&#x25CF;&#x25CF;&#x25CF;</span>
+                <span class="chip"></span><span class="disclaimer">This card is property of Random Bank of Random corporation. <br> If found please return to Random Bank of Random corporation - 21968 Paris, Verdi Street, 34 </span>
+            </div>
+        </div>
+    </div>
+    <div class="col2">
+        <label>Card Number</label>
+        <input class="number" type="text" ng-model="ncard" maxlength="19" oninput="formatCardNumber(event)" />
+        <label>Cardholder name</label>
+        <input class="inputname" type="text" placeholder=""/>
+        <label>Expiry date</label>
+        <input class="expire" type="text" placeholder="MM / YYYY" maxlength="7" oninput="formatExpiryDate(event)" />
+        <label>Security Number</label>
+        <input class="ccv" type="password" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+        <label>Deposit Amount</label>
+        <input class="deposit-amount" type="text" placeholder="Enter deposit amount" oninput="addDollarSign(event)" />
+        <button class="buy" formaction="/order">Pay</button>
+    </div>
+</div>
+
+<script>
+    function formatCardNumber(event) {
+        let input = event.target;
+        let inputValue = input.value.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim();
+        input.value = inputValue;
+    }
+
+    function formatExpiryDate(event) {
+        let input = event.target;
+        let inputValue = input.value;
+        let inputLength = inputValue.length;
+
+        // Проверяем, ввели ли мы вторую цифру и отсутствует ли уже символ "/"
+        if (inputLength === 2 && !inputValue.includes('/')) {
+            input.value += '/';
+        }
+    }
+
+    function addDollarSign(event) {
+        let input = event.target;
+        let inputValue = input.value;
+        // Добавляем знак доллара, если он еще не добавлен
+        if (!inputValue.startsWith('$')) {
+            input.value = '$' + inputValue;
+        }
+    }
+</script>
+
+</body>
+</html>

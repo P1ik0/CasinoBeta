@@ -1,0 +1,30 @@
+<!-- profile-completed.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+<div class="container">
+    <h1>User Profile</h1>
+    <div class="profile-info">
+        <p>Email: <span th:text="${userProfile.email}"></span></p>
+        <p>Name: <span th:text="${userProfile.name}"></span></p>
+        <p>Surname: <span th:text="${userProfile.surname}"></span></p>
+        <p>Placeholder: <span th:text="${userProfile.placeholder}"></span></p>
+        <p>Phone: <span th:text="${userProfile.phone}"></span></p>
+        <p>Dob: <span th:text="${userProfile.dob}"></span></p>
+        <p>Gender: <span th:text="${userProfile.gender}"></span></p>
+    </div>
+    <div class="profile-btn">
+        <a href="/Main">Go to Main</a>
+    </div>
+    <div class="logout-btn">
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+<link rel="stylesheet" href="/css/profile.css">
+</body>
+</html>

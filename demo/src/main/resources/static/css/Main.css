@@ -1,0 +1,307 @@
+.Box_gap--3La {
+    gap: 24px;
+    flex-direction: column;
+    flex: 1 1 0%;
+}
+
+.Box_justify_center--yR5 {
+    justify-content: center;
+}
+
+.Box_box--BuJ {
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+}
+
+body {
+    background-color: #000036;
+    --fontFamily: "Gilroy", Arial, Helvetica, sans-serif;
+    margin-top: 80px;
+    font-family: var(--fontFamily);
+}
+
+
+.slots-heading,
+.roulette-heading {
+    font-size: 18px;
+    text-align: start; /* Изменено на начало */
+    color: #0f0; /* Цвет текста */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Расстояние между изображением и текстом */
+}
+
+.slots-heading img,
+.roulette-heading img {
+    width: 20px;
+}
+
+.divider {
+    block-size: 1px;
+    border-block-end-color: rgb(255, 255, 255);
+    border-block-start-color: rgb(255, 255, 255);
+    border-inline-end-color: rgb(255, 255, 255);
+    border-inline-start-color: rgb(255, 255, 255);
+    bottom: 0px;
+    box-sizing: border-box;
+    caret-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    column-rule-color: rgb(255, 255, 255);
+    display: flex;
+    height: 1px;
+    align-self: flex-start;
+    inline-size: 641.167px;
+    inset-block-end: 0px;
+    inset-block-start: 0px;
+    inset-inline-end: 0px;
+    inset-inline-start: 0px;
+    left: 0px;
+    min-block-size: auto;
+    min-height: auto;
+    min-inline-size: auto;
+    min-width: auto;
+    perspective-origin: 320.583px 0.5px;
+    position: relative;
+    right: 0px;
+    text-decoration: none solid rgb(255, 255, 255);
+    text-emphasis-color: rgb(255, 255, 255);
+    text-size-adjust: 100%;
+    top: 0px;
+    transform-origin: 320.583px 0.5px;
+    width: 1620.167px;
+    background: rgba(0, 0, 0, 0) linear-gradient(90deg, rgb(157, 246, 157), rgb(31, 34, 80) 15.25%) repeat scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgb(255, 255, 255);
+    flex: 1 1 30%;
+    font: 16px Gilroy, Arial, Helvetica, sans-serif;
+    outline: rgb(255, 255, 255) none 0px;
+}/*#DIV_1*/
+
+.divider:after {
+    border-block-end-color: rgb(255, 255, 255);
+    border-block-start-color: rgb(255, 255, 255);
+    border-inline-end-color: rgb(255, 255, 255);
+    border-inline-start-color: rgb(255, 255, 255);
+    caret-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    column-rule-color: rgb(255, 255, 255);
+    display: block;
+    text-decoration: none solid rgb(255, 255, 255);
+    text-emphasis-color: rgb(255, 255, 255);
+    text-size-adjust: 100%;
+    border: 0px none rgb(255, 255, 255);
+    font: 16px Gilroy, Arial, Helvetica, sans-serif;
+    outline: rgb(255, 255, 255) none 0px;
+}/*#DIV_1:after*/
+
+.divider:before {
+    border-block-end-color: rgb(255, 255, 255);
+    border-block-start-color: rgb(255, 255, 255);
+    border-inline-end-color: rgb(255, 255, 255);
+    border-inline-start-color: rgb(255, 255, 255);
+    caret-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    column-rule-color: rgb(255, 255, 255);
+    display: block;
+    text-decoration: none solid rgb(255, 255, 255);
+    text-emphasis-color: rgb(255, 255, 255);
+    text-size-adjust: 100%;
+    border: 0px none rgb(255, 255, 255);
+    font: 16px Gilroy, Arial, Helvetica, sans-serif;
+    outline: rgb(255, 255, 255) none 0px;
+}/*#DIV_1:before*/
+
+
+
+
+.top-panel {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgba(0, 0, 54, 0.6);
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+.logo {
+    width: 250px; /* Желаемая ширина логотипа */
+    height: auto; /* Автоматический расчет высоты */
+    margin-right: auto; /* Выравнивание логотипа по правому краю */
+    margin-left: 20px; /* Отступ слева для логотипа */
+}
+
+.register-btn,
+.login-btn {
+    color: #3ff;
+    background-color: transparent;
+    border: 1px solid #3ff;
+    padding: 6px 15px;
+    margin-left: 8px;
+    cursor: pointer;
+    border-radius: 19px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.register-btn:hover,
+.login-btn:hover {
+    color: #000036;
+    background-color: #3ff;
+    border-color: #3ff;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    margin-left: 100px; /* увеличил отступ на 100px */
+    height: 100%;
+    padding-left: 20px;
+}
+
+.roulette-row,
+.slot-row {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.item p {
+    margin: 0;
+}
+
+.item img {
+    width: 24px; /* Установите желаемую ширину изображений */
+    height: 24px; /* Установите желаемую высоту изображений */
+}
+.roulette-row img,
+.slot-row img {
+    width: 150px;
+    position: relative;
+    height: 225px;
+    margin: 6px;
+    transition: filter 0.3s;
+    box-sizing: border-box;
+    border-radius: 10px;
+    z-index: 0; /* Задаем самый низкий z-index для картинок слотов */
+}
+
+.reclama-container {
+    position: absolute;
+    top: 150px;
+    left: 240px;
+    right: 0;
+    justify-content: end;
+    padding: 10px;
+    z-index: 0; /* Устанавливаем выше чем блок слева */
+}
+
+@media (min-width: 992px) {
+    .sidebar {
+        width: 25%; /* Ширина блока слева на экранах шире 992px */
+    }
+
+    .content {
+        margin-left: 25%; /* Отступ контента от левого края на экранах шире 992px */
+    }
+}
+
+
+
+.roulette-container,
+.slot-container {
+    max-width: 1900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    right: 4px;
+    overflow: hidden; /* Добавлено свойство overflow: hidden; */
+}
+.roulette-row img:hover,
+.slot-row img:hover {
+
+    filter: brightness(50%); /* Затемняем картинку на 70% при наведении */
+}
+/* Стили для нового контейнера
+/* Стили для сайдбара */
+.sidebar {
+    position: fixed;
+    top: 240px;
+    left: 10px;
+    width: 206px;
+    height: calc(85% - 140px);
+    background-color: #1e2150;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 11px;
+    border: 1px solid #343761;
+    color: #bfbfcb;
+    line-height: 2;
+    z-index: 999; /* Установка такого же z-index, как и ранее */
+}
+
+.search-provider-container {
+    position: fixed;
+    top: 100px;
+    left: 10px;
+    padding: 10px 30px;
+    width: 206px; /* Increased width */
+    background-color: #1e2150;
+    flex-direction: column; /* Размещаем элементы в столбце */
+    align-items: flex-start;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    height: 114px;
+    border: 1px solid #343761;
+    border-radius: 11px;
+    color: #bfbfcb;
+    line-height: 2;
+}
+/* Additional CSS for the search box */
+.search-box {
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+    font-size: 18px;
+    gap: 10px;
+}
+
+.item1 p {
+    margin: 0;
+}
+
+.item1{
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+    font-size: 18px;
+    gap: 10px;
+}
+.item1-icon {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* Additional CSS for the search icon */
+.search-icon {
+
+    width: 20px;
+    height: 20px;
+}

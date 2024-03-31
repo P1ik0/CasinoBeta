@@ -2,8 +2,10 @@ package com.example.demo.Server;
 
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class UserService {
@@ -18,6 +20,9 @@ public class UserService {
         }
         return null;
     }
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 
     public User register(String username, String phone, String email, String password) {
         // Проверяем, существует ли пользователь с таким именем
@@ -28,11 +33,15 @@ public class UserService {
         // Создаем новый экземпляр пользователя
         User user = new User();
         user.setUsername(username);
-        user.setPhone(phone);
         user.setEmail(email);
         user.setPassword(password);
-
+        user.setBalance(0); // Установите начальный баланс
+        userRepository.save(user);
         // Сохраняем пользователя в базе данных
         return userRepository.save(user);
     }
+
+
 }
+
+

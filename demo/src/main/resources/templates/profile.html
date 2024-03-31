@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+<div class="container">
+    <h1>User Profile</h1>
+    <form id="profile-form" action="/registerinfo" method="post">
+        <div class="profile-info">
+            <div class="profile-info-item">
+                <label for="email">Email:</label>
+                <div id="email" th:text="${userProfile.email}"></div>
+            </div>
+            <!-- Добавьте отображение сохраненных данных пользователя -->
+            <div class="profile-info-item">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" th:value="${userProfile.phone}" required>
+            </div>
+            <div class="profile-info-item">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" th:value="${userProfile.name}" required>
+            </div>
+            <div class="profile-info-item">
+                <label for="surname">Surname:</label>
+                <input type="text" id="surname" name="surname" th:value="${userProfile.surname}" required>
+            </div>
+            <div class="profile-info-item">
+                <label for="placeholder">Placeholder:</label>
+                <!-- Добавьте отображение сохраненных данных пользователя -->
+                <input type="text" id="placeholder" name="placeholder" th:value="${userProfile.placeholder}">
+            </div>
+            <div class="profile-info-item">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" th:value="${userProfile.dob}" required>
+            </div>
+            <div class="profile-info-item">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male" th:selected="${userProfile.gender == 'male'}">Male</option>
+                    <option value="female" th:selected="${userProfile.gender == 'female'}">Female</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit">Save</button>
+    </form>
+    <div class="profile-btn">
+        <a href="/Main">Go to Main</a>
+        <div>
+            <!-- Добавляем кнопку "Депозит" -->
+            <a href="/deposit" class="btn btn-primary">Депозит</a>
+        </div>
+    </div>
+    <div class="logout-btn">
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+</body>
+</html>

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Animated Login & Registration Form | Codehal</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 <div class="wrapper">
@@ -39,11 +39,11 @@
       <div class="input-group">
         <input type="email" name="email" required>
         <label for="">Email</label>
-      </div>
+      </div><div class="input-wrapper">
       <div class="input-group">
         <input type="password" name="password" required>
         <label for="">Password</label>
-      </div>
+      </div></div>
       <div class="remember">
         <label><input type="checkbox" name="agree"> I agree to the terms & conditions</label>
       </div>
@@ -54,18 +54,18 @@
     </form>
   </div>
 </div>
-<!--<script>-->
-<!--  // JavaScript для перенаправления пользователя после успешного входа-->
-<!--  window.onload = function() {-->
-<!--    // Проверяем, есть ли параметр "login" в URL-->
-<!--    const urlParams = new URLSearchParams(window.location.search);-->
-<!--    const loginParam = urlParams.get('login');-->
-<!--    // Если параметр "login" равен "success", перенаправляем пользователя на главную страницу казино-->
-<!--    if (loginParam === 'success') {-->
-<!--      window.location.href = '/Main'; // Замените '/Main' на реальный URL вашей страницы казино-->
-<!--    }-->
-<!--  };-->
-<!--</script>-->
-<script src="script.js"></script>
+<script>
+  // JavaScript для перенаправления пользователя после успешного входа
+  window.onload = function() {
+    // Проверяем, есть ли параметр "login" в URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const loginParam = urlParams.get('login');
+    // Если параметр "login" равен "success", перенаправляем пользователя на главную страницу казино
+    if (loginParam === 'success') {
+      window.location.href = '/Main'; // Замените '/Main' на реальный URL вашей страницы казино
+    }
+  };
+</script>
+<script src="/js/script.js"></script>
 </body>
 </html>

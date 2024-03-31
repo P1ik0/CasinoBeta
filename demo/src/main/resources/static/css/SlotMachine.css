@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.slot-machine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reel {
+    display: flex;
+    flex-direction: column;
+}
+
+.slot {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slot.win {
+    color: red;
+}
+
+button {
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+#balance {
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+#result {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+#roundInfo {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+#spinBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    display: block;
+}
