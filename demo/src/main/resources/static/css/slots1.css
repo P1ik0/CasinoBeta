@@ -1,0 +1,55 @@
+body {
+    line-height: 1;
+    color: #000036;
+    background: #000036;
+    font-family: Lucida Grande, trebuchet ms, verdana, arial, helvetica, sans-serif;
+}
+
+#viewport {
+
+    overflow: hidden;
+    width: 100%;
+    display: block;
+}
+
+#viewport.mobile {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#viewport.tablet {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#viewport.desktop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+#content {
+    background: black;
+    position: fixed; /* Добавлено относительное позиционирование */
+    width: 620px;
+    left: 30%;
+    height: 480px;
+    margin: 87px auto 0; /* Изменено положение с помощью margin */
+}
+
+canvas {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+.unique-slot-container {
+    position: absolute;
+    bottom: 0; /* Помещаем его внизу */
+    left: 50%; /* Помещаем его в середину */
+    transform: translateX(-50%); /* Центрируем по горизонтали */
+}
