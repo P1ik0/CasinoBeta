@@ -17,10 +17,20 @@
         <p>Phone: <span th:text="${userProfile.phone}"></span></p>
         <p>Dob: <span th:text="${userProfile.dob}"></span></p>
         <p>Gender: <span th:text="${userProfile.gender}"></span></p>
+        <div class="profile-info-item">
+            <label for="balance">Balance:</label>
+            <div id="balance" th:text="${userProfile.balance}"></div>
+        </div>
     </div>
     <div class="profile-btn">
         <a href="/Main">Go to Main</a>
     </div>
+    <div>
+        <div class="profile-btn">
+        <!-- Добавляем кнопку "Депозит" -->
+        <a href="/deposit" class="btn btn-primary">Депозит</a>
+    </div>
+</div>
     <div class="logout-btn">
         <a href="/logout">Logout</a>
     </div>

@@ -8,18 +8,15 @@
 
     import java.time.LocalDate;
 
-
     @Entity(name = "users")
     public class User {
+
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
 
-
         @Column(name = "dob")
         private LocalDate dob;
-
-
         @Size(min = 2, max = 30)
         @Column(name = "username")
         private String username;
@@ -163,6 +160,7 @@
 
         }
         private Boolean profileCompleted;
+
 
         // Геттеры и сеттеры для profileCompleted
 

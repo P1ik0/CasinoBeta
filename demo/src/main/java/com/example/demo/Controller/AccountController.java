@@ -52,4 +52,5 @@ public class AccountController {
         // Возвращаем имя представления (шаблона Thymeleaf)
         return "profile";
     }
+
 }
