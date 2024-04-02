@@ -6,9 +6,10 @@
 }
 
 .slot-machine {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(6, 60px); /* Расположение по горизонтали */
+    grid-template-rows: repeat(5, 60px); /* Расположение по вертикали */
+    gap: 5px; /* Промежуток между ячейками */
 }
 
 .reel {
@@ -17,11 +18,8 @@
 }
 
 .slot {
-    width: 50px;
-    height: 50px;
-    border: 1px solid #000;
-    margin-right: 5px;
-    margin-bottom: 5px;
+    width: 60px;
+    height: 60px;
     font-size: 30px;
     display: flex;
     justify-content: center;

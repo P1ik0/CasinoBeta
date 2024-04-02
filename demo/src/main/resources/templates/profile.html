@@ -54,6 +54,10 @@
             <a href="/deposit" class="btn btn-primary">Депозит</a>
         </div>
     </div>
+    <div class="profile-info-item">
+        <label for="balance">Balance:</label>
+        <div id="balance" th:text="${userProfile.balance}"></div>
+    </div>
     <div class="logout-btn">
         <a href="/logout">Logout</a>
     </div>

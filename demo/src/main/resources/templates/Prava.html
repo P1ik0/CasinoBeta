@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Перевірка інформації</title>
+</head>
+<body>
+<div id="formWrapper">
+    <form id="infoForm">
+        <label for="pvSeries">Серія ПВ:</label>
+        <input type="text" id="pvSeries" name="pvSeries" required><br>
+        <label for="pvNumber">Номер ПВ:</label>
+        <input type="text" id="pvNumber" name="pvNumber" required><br>
+        <label for="ownerBirthdate">Дата народження власника ПВ (РРРР-ММ-ДД):</label>
+        <input type="text" id="ownerBirthdate" name="ownerBirthdate" pattern="\d{4}-\d{2}-\d{2}" required><br>
+        <button type="submit">Перевірити</button>
+    </form>
+    <div id="result"></div>
+</div>
+
+<script src="/js/prava.js"></script>
+</body>
+</html>

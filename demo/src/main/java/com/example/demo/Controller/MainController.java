@@ -32,6 +32,10 @@ public class MainController {
     public String greeting() {
         return "greeting";
     }
+    @GetMapping("/prava")
+    public String prava() {
+        return "prava";
+    }
     @GetMapping("/slots3")
     public String slots3(){
         return  "slots3";
@@ -92,6 +96,7 @@ public class MainController {
             return LocalDate.parse(dateString, formatter);
         }
     }
+
     @PostMapping("/registerinfo")
     public String saveUserInfo(@ModelAttribute("user") User updatedUser, HttpSession session) {
         // Получаем пользователя из сессии
@@ -156,8 +161,24 @@ public class MainController {
             model.addAttribute("userProfile", userProfile);
             return "profile"; // Представление для редактирования профиля
         }
-    }
 
+    }
+    @PostMapping("/deposit")
+    public String processDeposit(@RequestParam("depositAmount") int depositAmount, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            // Получаем текущий баланс пользователя
+            Integer currentBalance = user.getBalance();
+            if (currentBalance != null) {
+                // Обновляем баланс пользователя
+                user.setBalance(currentBalance + depositAmount);
+                userRepository.save(user);
+                return "redirect:/profile"; // Перенаправляем пользователя на профиль
+            }
+        }
+        // Если пользователь не найден или у него нет баланса, перенаправляем на страницу с ошибкой
+        return "redirect:/error";
+    }
     @GetMapping("/Main")
     public String mainPage() {
         return "Main";
@@ -182,6 +203,7 @@ public class MainController {
             model.addAttribute("error", "Authentication failed");
             return "register";
         }
+
     }
 
 
