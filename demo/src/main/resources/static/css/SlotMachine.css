@@ -7,8 +7,8 @@
 
 .slot-machine {
     display: grid;
-    grid-template-columns: repeat(6, 60px); /* Расположение по горизонтали */
-    grid-template-rows: repeat(5, 60px); /* Расположение по вертикали */
+    grid-template-columns: repeat(4, 60px); /* 4 столбца */
+    grid-template-rows: repeat(3, 60px); /* 3 ряда */
     gap: 5px; /* Промежуток между ячейками */
 }
 
@@ -30,30 +30,12 @@
     color: red;
 }
 
-button {
+button, #balance, #result, #roundInfo {
     margin-top: 20px;
     font-size: 1.5rem;
 }
 
-#balance {
-    margin-top: 20px;
-    font-size: 1.2rem;
-}
-
-#result {
-    margin-top: 10px;
-    font-size: 1.2rem;
-}
-
-#roundInfo {
-    margin-top: 10px;
-    font-size: 1.2rem;
-}
-
 #spinBtn {
-    margin-top: 20px;
     padding: 10px 20px;
-    font-size: 20px;
     cursor: pointer;
-    display: block;
 }

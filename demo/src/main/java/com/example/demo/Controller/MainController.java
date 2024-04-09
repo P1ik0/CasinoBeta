@@ -1,3 +1,4 @@
+
 package com.example.demo.Controller;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.ui.Model;
@@ -9,9 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
@@ -25,21 +26,26 @@ public class MainController {
         this.userService = userService;
     }
 
-
-
-
     @GetMapping("/greeting")
     public String greeting() {
         return "greeting";
     }
+
+    @GetMapping("/quiz")
+    public String victorina() {
+        return "quiz";
+    }
+
     @GetMapping("/prava")
     public String prava() {
         return "prava";
     }
+
     @GetMapping("/slots3")
     public String slots3(){
         return  "slots3";
     }
+
     @GetMapping("/slots2")
     public String slots2(){
         return "slots1";
@@ -49,6 +55,7 @@ public class MainController {
     public String deposit() {
         return "deposit";
     }
+
     @GetMapping("/deposit2")
     public String deposit2() {
         return "deposit2";
@@ -79,22 +86,11 @@ public class MainController {
             model.addAttribute("error", "User with this email already exists");
             return null;
         }
-
         // Устанавливаем начальный баланс пользователя
-        user.setBalance(Integer.parseInt(String.valueOf(0)));
-
+        user.setBalance(0);
         // Если пользователь с такими данными не существует, сохраняем нового пользователя
         userRepository.save(user);
         return "redirect:/register";
-    }
-
-    public class DateUtils {
-        public static LocalDate parseDate(String dateString) {
-            // Создаем форматтер для даты в формате "день.месяц.год"
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            // Парсим строку в объект LocalDate с помощью указанного форматтера
-            return LocalDate.parse(dateString, formatter);
-        }
     }
 
     @PostMapping("/registerinfo")
@@ -161,8 +157,8 @@ public class MainController {
             model.addAttribute("userProfile", userProfile);
             return "profile"; // Представление для редактирования профиля
         }
-
     }
+
     @PostMapping("/deposit")
     public String processDeposit(@RequestParam("depositAmount") int depositAmount, HttpSession session) {
         User user = (User) session.getAttribute("user");
@@ -176,9 +172,12 @@ public class MainController {
                 return "redirect:/profile"; // Перенаправляем пользователя на профиль
             }
         }
-        // Если пользователь не найден или у него нет баланса, перенаправляем на страницу с ошибкой
+        // Если пользователь не найден или у него нет баланса, перенап
+
+
         return "redirect:/error";
     }
+
     @GetMapping("/Main")
     public String mainPage() {
         return "Main";
@@ -196,6 +195,7 @@ public class MainController {
         User user = userService.authenticate(username, password);
         if (user != null) {
             session.setAttribute("authenticated", true);
+            session.setAttribute("userId", user.getId()); // Устанавливаем идентификатор пользователя в сессии
             session.setAttribute("user", user);
             model.addAttribute("message", "User successfully authenticated");
             return "redirect:/profile";
@@ -203,7 +203,6 @@ public class MainController {
             model.addAttribute("error", "Authentication failed");
             return "register";
         }
-
     }
 
 
@@ -211,12 +210,30 @@ public class MainController {
     public String index(Model model, HttpSession session) {
         Boolean isAuthenticated = (Boolean) session.getAttribute("authenticated");
         if (isAuthenticated != null && isAuthenticated) {
-            model.addAttribute("menuText", "Профиль");
-        } else {
-            model.addAttribute("menuText", "Вход");
+            // Получаем идентификатор пользователя из сессии
+            Long userId = (Long) session.getAttribute("userId");
+
+            // Получаем пользователя из базы данных по его id
+            User user = userRepository.findById(userId).orElse(null);
+
+            if (user != null) {
+                // Получаем текущий баланс пользователя
+                Integer currentBalance = user.getBalance();
+
+                // Передаем баланс пользователя в модель
+                model.addAttribute("currentBalance", currentBalance);
+
+                // Передаем объект пользователя в модель
+                model.addAttribute("user", user);
+
+                return "index";
+            }
         }
-        return "index";
+
+        // Если пользователь не аутентифицирован или не найден в базе данных, перенаправляем на страницу входа
+        return "redirect:/login";
     }
+
 
     @Controller
     public class LogoutController {
@@ -228,5 +245,4 @@ public class MainController {
             return "redirect:/Main";
         }
     }
-
 }
