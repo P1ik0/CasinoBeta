@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
 <div class="container">
@@ -13,35 +13,29 @@
         <div class="profile-info">
             <div class="profile-info-item">
                 <label for="email">Email:</label>
-                <div id="email" th:text="${userProfile.email}"></div>
+                <div id="email"></div>
             </div>
-            <!-- Добавьте отображение сохраненных данных пользователя -->
             <div class="profile-info-item">
                 <label for="phone">Phone:</label>
-                <input type="text" id="phone" name="phone" th:value="${userProfile.phone}" required>
+                <input type="text" id="phone" name="phone" value="+380" required pattern="\+380\d{9}">
             </div>
             <div class="profile-info-item">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" th:value="${userProfile.name}" required>
+                <input type="text" id="name" name="name" required pattern="[A-Za-zА-Яа-яЁё]{1,}" title="Only letters are allowed">
             </div>
             <div class="profile-info-item">
                 <label for="surname">Surname:</label>
-                <input type="text" id="surname" name="surname" th:value="${userProfile.surname}" required>
-            </div>
-            <div class="profile-info-item">
-                <label for="placeholder">Placeholder:</label>
-                <!-- Добавьте отображение сохраненных данных пользователя -->
-                <input type="text" id="placeholder" name="placeholder" th:value="${userProfile.placeholder}">
+                <input type="text" id="surname" name="surname" required pattern="[A-Za-zА-Яа-яЁё]{1,}" title="Only letters are allowed">
             </div>
             <div class="profile-info-item">
                 <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" th:value="${userProfile.dob}" required>
+                <input type="date" id="dob" name="dob" min="1914-01-01" max="2024-12-31" required>
             </div>
             <div class="profile-info-item">
                 <label for="gender">Gender:</label>
                 <select id="gender" name="gender" required>
-                    <option value="male" th:selected="${userProfile.gender == 'male'}">Male</option>
-                    <option value="female" th:selected="${userProfile.gender == 'female'}">Female</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
                 </select>
             </div>
         </div>
@@ -50,17 +44,40 @@
     <div class="profile-btn">
         <a href="/Main">Go to Main</a>
         <div>
-            <!-- Добавляем кнопку "Депозит" -->
-            <a href="/deposit" class="btn btn-primary">Депозит</a>
+            <a href="/deposit" class="btn btn-primary">Deposit</a>
         </div>
     </div>
     <div class="profile-info-item">
         <label for="balance">Balance:</label>
-        <div id="balance" th:text="${userProfile.balance}"></div>
+        <div id="balance"></div>
     </div>
     <div class="logout-btn">
         <a href="/logout">Logout</a>
     </div>
 </div>
+<script>
+    document.getElementById('name').addEventListener('input', function(e) {
+        e.target.value = e.target.value.replace(/[^A-Za-zА-Яа-яЁё]/g, '');
+        if (e.target.value.length > 0) {
+            e.target.value = e.target.value[0].toUpperCase() + e.target.value.slice(1);
+        }
+    });
+
+    document.getElementById('surname').addEventListener('input', function(e) {
+        e.target.value = e.target.value.replace(/[^A-Za-zА-Яа-яЁё]/g, '');
+        if (e.target.value.length > 0) {
+            e.target.value = e.target.value[0].toUpperCase() + e.target.value.slice(1);
+        }
+    });
+
+    document.getElementById('phone').addEventListener('input', function(e) {
+        let pureNumbers = e.target.value.replace(/\D/g, '');
+        if (pureNumbers.startsWith('380')) {
+            pureNumbers = pureNumbers.slice(3);
+        }
+        pureNumbers = pureNumbers.slice(0, 9);
+        e.target.value = '+380' + pureNumbers;
+    });
+</script>
 </body>
 </html>
