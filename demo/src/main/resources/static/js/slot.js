@@ -1,4 +1,3 @@
-
 const Slot = function (canvas) {
   this.canvas = canvas;
   let auto = false;
@@ -7,10 +6,21 @@ const Slot = function (canvas) {
   let delta = 0;
   let currentSpin = [];
 
-  let updateBalance = function () {
-    document.getElementById('balance').innerText = conf.player.money;
+  // Функция для обновления баланса при загрузке страницы
+  let fetchAndUpdateBalance = function () {
+    UserService.getBalanceByUsername().then(balance => {
+      conf.player.money = balance;
+      updateBalance();
+    }).catch(error => {
+      console.error('Error fetching balance:', error);
+    });
   };
-
+  fetchAndUpdateBalance();
+  let updateBalanceAfterSpin = function (totalSum) {
+    conf.player.money += totalSum;
+    conf.balance.value = conf.player.money;
+    updateBalance();
+  };
   this.checkout = function () {
     if (confirm('Are you sure? We can keep your money better!')) {
       UserService.getBalanceByUsername().then(balance => {
@@ -23,12 +33,35 @@ const Slot = function (canvas) {
       auto = false;
     }
   };
+  // Обновление баланса пользователя
+  function updateUserBalance() {
+    $.ajax({
+      url: '/balance', // Указываем URL для запроса баланса пользователя
+      type: 'GET',
+      success: function(data) {
+        $('#userBalance').val(data); // Устанавливаем полученный баланс в поле ввода
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log('Error:', textStatus, errorThrown);
+      }
+    });
+  }
 
-  this.setCredits = function () {
-    conf.player.money = conf.balance.value;
-    updateBalance();
-    return this;
-  };
+// Вызываем функцию для обновления баланса пользователя при загрузке страницы
+  $(document).ready(function() {
+    updateUserBalance();
+  });
+
+  this.spin = function () {
+  let totalSum = check(currentSpin);
+  if (totalSum !== undefined) {
+    updateBalanceAfterSpin(totalSum);
+  }
+
+    let check = function (reels) {
+      // Остальной код остается неизменным.
+    };
+};
 
   // Остальной код остается неизменным.
 

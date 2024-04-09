@@ -1,6 +1,8 @@
 
 package com.example.demo.Controller;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import com.example.demo.Server.UserService;
 import com.example.demo.model.User;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 @Controller
 public class MainController {
@@ -206,31 +209,20 @@ public class MainController {
     }
 
 
+    // В методе index контроллера
     @GetMapping("/")
     public String index(Model model, HttpSession session) {
         Boolean isAuthenticated = (Boolean) session.getAttribute("authenticated");
         if (isAuthenticated != null && isAuthenticated) {
-            // Получаем идентификатор пользователя из сессии
             Long userId = (Long) session.getAttribute("userId");
-
-            // Получаем пользователя из базы данных по его id
             User user = userRepository.findById(userId).orElse(null);
-
             if (user != null) {
-                // Получаем текущий баланс пользователя
                 Integer currentBalance = user.getBalance();
-
-                // Передаем баланс пользователя в модель
                 model.addAttribute("currentBalance", currentBalance);
-
-                // Передаем объект пользователя в модель
                 model.addAttribute("user", user);
-
                 return "index";
             }
         }
-
-        // Если пользователь не аутентифицирован или не найден в базе данных, перенаправляем на страницу входа
         return "redirect:/login";
     }
 
