@@ -33,34 +33,11 @@ const Slot = function (canvas) {
       auto = false;
     }
   };
-  // Обновление баланса пользователя
-  function updateUserBalance() {
-    $.ajax({
-      url: '/balance', // Указываем URL для запроса баланса пользователя
-      type: 'GET',
-      success: function(data) {
-        $('#userBalance').val(data); // Устанавливаем полученный баланс в поле ввода
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.log('Error:', textStatus, errorThrown);
-      }
-    });
-  }
-
-// Вызываем функцию для обновления баланса пользователя при загрузке страницы
-  $(document).ready(function() {
-    updateUserBalance();
-  });
-
   this.spin = function () {
   let totalSum = check(currentSpin);
   if (totalSum !== undefined) {
     updateBalanceAfterSpin(totalSum);
   }
-
-    let check = function (reels) {
-      // Остальной код остается неизменным.
-    };
 };
 
   // Остальной код остается неизменным.
