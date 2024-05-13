@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deposit Form</title>
-    <link rel="stylesheet" href="/css/deposit.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=480,initial-scale=1, maximum-scale=1" />
+    <title>SlotMachine</title>
+    <link rel="stylesheet" href="/css/withdraw.css">
 
     <style>
         #userStatus {
@@ -44,9 +43,10 @@
             z-index: 1999;
         }
     </style>
-</head>
-<body>
 
+</head>
+
+<body>
 <div class="top-panel">
     <a href="/Main">
         <img src="https://casino.ua/minio/logos/logo.svg" alt="Casino Logo" class="logo">
@@ -59,23 +59,14 @@
 
 <div class="container">
     <div class="col2">
-        <form action="/deposit" method="post">
+        <form action="/withdraw" method="post">
             <label for="cardNumber">Card Number</label>
             <input id="cardNumber" class="number" type="text" name="cardNumber" maxlength="19" oninput="formatCardNumber(event)" required />
 
-            <label for="cardHolderName">Cardholder Name</label>
-            <input id="cardHolderName" class="inputname" type="text" name="cardHolderName" placeholder="" required />
+            <label for="withdrawAmount">Withdraw Amount</label>
+            <input id="withdrawAmount" class="withdraw-amount" type="text" name="withdrawAmount" placeholder="Enter amount to withdraw" required />
 
-            <label for="expiryDate">Expiry Date</label>
-            <input id="expiryDate" class="expire" type="text" name="expiryDate" placeholder="MM / YYYY" maxlength="7" oninput="formatExpiryDate(event)" required />
-
-            <label for="securityNumber">Security Number</label>
-            <input id="securityNumber" class="ccv" type="password" name="securityNumber" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required />
-
-            <label for="depositAmount">Deposit Amount</label>
-            <input id="depositAmount" class="deposit-amount" type="text" name="depositAmount" placeholder="Enter deposit amount" required />
-
-            <button class="buy" type="submit">Pay</button>
+            <button class="withdraw" type="submit">Withdraw</button>
         </form>
     </div>
 </div>
@@ -87,23 +78,6 @@
         input.value = inputValue;
     }
 
-    function formatExpiryDate(event) {
-        let input = event.target;
-        let inputValue = input.value;
-        let inputLength = inputValue.length;
-
-        if (inputLength === 2 && !inputValue.includes('/')) {
-            input.value += '/';
-        }
-    }
-
-    document.getElementById('cardHolderName').addEventListener('keypress', function(event) {
-        const charCode = event.which ? event.which : event.keyCode;
-        if ((charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122) && charCode !== 32) {
-            event.preventDefault();
-        }
-    });
-
     document.querySelectorAll('input:not(.inputname)').forEach(function(input) {
         input.addEventListener('keypress', function(event) {
             if (event.which < 48 || event.which > 57) {
@@ -112,6 +86,8 @@
         });
     });
 </script>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

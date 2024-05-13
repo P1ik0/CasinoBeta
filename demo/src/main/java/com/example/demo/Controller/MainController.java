@@ -79,6 +79,11 @@ public class MainController {
         return "register";
     }
 
+    @GetMapping("/withdraw")
+    public String withdraw() {
+        return "withdraw";
+    }
+
     @PostMapping("/register")
     public String saveUser(@ModelAttribute("user") User user, Model model) {
         if (userRepository.existsByUsername(user.getUsername())) {
@@ -181,6 +186,25 @@ public class MainController {
         return "redirect:/error";
     }
 
+    @PostMapping("/withdraw")
+    public String processWithdrawal(@RequestParam("withdrawAmount") int withdrawAmount, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            // Получаем текущий баланс пользователя
+            Integer currentBalance = user.getBalance();
+            if (currentBalance != null && currentBalance >= withdrawAmount) {
+                // Обновляем баланс пользователя
+                user.setBalance(currentBalance - withdrawAmount);
+                userRepository.save(user);
+                return "redirect:/profile"; // Перенаправляем пользователя на профиль
+            }
+        }
+        // Если пользователь не найден, у него нет баланса или недостаточно средств, перенаправляем на страницу ошибки
+        return "redirect:/error";
+    }
+
+
+
     @GetMapping("/Main")
     public String mainPage() {
         return "Main";
@@ -225,8 +249,10 @@ public class MainController {
         }
         return "redirect:/login";
     }
-
-
+    @GetMapping("/api/balance")
+    public Integer getBalanceByUsername(@RequestParam String username) {
+        return userService.getBalanceByUsername(username);
+    }
     @Controller
     public class LogoutController {
 

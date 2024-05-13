@@ -1,30 +1,52 @@
+
 const Slot = function (canvas) {
   this.canvas = canvas;
   let auto = false;
   let reels = [...range(1, 3)].map((i) => new Reel(canvas, conf.reel.xOffsets[i - 1]));
-
   let delta = 0;
   let currentSpin = [];
 
+  function getBalanceByUsername(username) {
+    return fetch(`http:///localhost:8080/api/balance?username=${encodeURIComponent(username)}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          return data.balance;
+        })
+        .catch(error => {
+          console.error('Error fetching balance:', error);
+        });
+  }
+
+
   // Функция для обновления баланса при загрузке страницы
   let fetchAndUpdateBalance = function () {
-    UserService.getBalanceByUsername().then(balance => {
-      conf.player.money = balance;
+    getBalanceByUsername().then(balance => {
+      conf.user.money = balance;
       updateBalance();
     }).catch(error => {
       console.error('Error fetching balance:', error);
     });
   };
   fetchAndUpdateBalance();
+
+  let updateBalance = function () {
+    conf.balance.value = conf.user.money;
+  };
+
   let updateBalanceAfterSpin = function (totalSum) {
-    conf.player.money += totalSum;
-    conf.balance.value = conf.player.money;
+    conf.user.money += totalSum;
     updateBalance();
   };
+
   this.checkout = function () {
     if (confirm('Are you sure? We can keep your money better!')) {
-      UserService.getBalanceByUsername().then(balance => {
-        conf.player.money = balance;
+      getBalanceByUsername().then(balance => {
+        conf.user.money = balance;
         updateBalance();
       }).catch(error => {
         console.error('Error fetching balance:', error);
@@ -33,27 +55,19 @@ const Slot = function (canvas) {
       auto = false;
     }
   };
-  this.spin = function () {
-  let totalSum = check(currentSpin);
-  if (totalSum !== undefined) {
-    updateBalanceAfterSpin(totalSum);
-  }
-};
-
-  // Остальной код остается неизменным.
 
   this.spin = function () {
     conf.win.value = 0;
     conf.sound.spin.play();
-    if (conf.player.money - conf.bet.value * 1 < 0) {
+    if (conf.user.money - conf.bet.value * 1 < 0) {
       conf.sound.spin.currentTime = 0;
       conf.sound.spin.pause();
       alert('You dont have enough credits!');
       auto = false;
       return;
     }
-    conf.player.money -= conf.bet.value * 1;
-    conf.balance.value = conf.player.money;
+    conf.user.money -= conf.bet.value * 1;
+    updateBalance();
     currentSpin = [];
     reels.forEach((reel) => {
       reel.clicked = true;
@@ -112,10 +126,10 @@ const Slot = function (canvas) {
             let won = check(currentSpin);
             if (auto) {
               setTimeout(
-                function () {
-                  conf.spinBtn.click();
-                },
-                won ? conf.autoModeDelay : 300,
+                  function () {
+                    conf.spinBtn.click();
+                  },
+                  won ? conf.autoModeDelay : 300,
               );
             }
           });
@@ -167,8 +181,8 @@ const Slot = function (canvas) {
     //all reels are aligned in one line
     for (let r = 0; r < reels.length; r++) {
       let reel1 = reels[0][r],
-        reel2 = reels[1][r],
-        reel3 = reels[2][r];
+          reel2 = reels[1][r],
+          reel3 = reels[2][r];
       let reelsStr = reel1.key + reel2.key + reel3.key;
       //top line
       if (reel1.stop === 0) {
@@ -191,9 +205,7 @@ const Slot = function (canvas) {
         else if (reelsStr.match(/(3xBAR){3}/g)) sum.middle += bet * 50;
         else if (reelsStr.match(/(2xBAR){3}/g)) sum.middle += bet * 20;
         else if (reelsStr.match(/(BAR){3}/g)) sum.middle += bet * 10;
-        else if
-
- (reelsStr.match(/(BAR|2xBAR|3xBAR){3}/g)) sum.middle += bet * 5;
+        else if (reelsStr.match(/(BAR|2xBAR|3xBAR){3}/g)) sum.middle += bet * 5;
         if (sum.middle !== 0) {
           highlightPts.push(60 + conf.reel.height / 2);
         }
@@ -224,8 +236,8 @@ const Slot = function (canvas) {
     });
 
     let totalSum = sum.top + sum.middle + sum.bottom;
-    conf.player.money += totalSum;
-    conf.balance.value = conf.player.money;
+    conf.user.money += totalSum;
+    conf.balance.value = conf.user.money;
     if (totalSum !== 0) {
       conf.sound.win.play();
       conf.win.classList.add('blink');

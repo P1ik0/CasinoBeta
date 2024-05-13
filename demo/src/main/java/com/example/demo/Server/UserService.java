@@ -41,6 +41,14 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public Integer getBalanceByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            return user.getBalance();
+        }
+        return null;
+    }
+
 
 }
 

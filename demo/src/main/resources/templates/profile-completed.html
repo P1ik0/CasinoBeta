@@ -1,37 +1,71 @@
-<!-- profile-completed.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-</head>
-<body>
-<div class="container">
-    <h1>User Profile</h1>
-    <div class="profile-info">
-        <p>Email: <span th:text="${userProfile.email}"></span></p>
-        <p>Name: <span th:text="${userProfile.name}"></span></p>
-        <p>Surname: <span th:text="${userProfile.surname}"></span></p>
-        <p>Placeholder: <span th:text="${userProfile.placeholder}"></span></p>
-        <p>Phone: <span th:text="${userProfile.phone}"></span></p>
-        <p>Dob: <span th:text="${userProfile.dob}"></span></p>
-        <p>Gender: <span th:text="${userProfile.gender}"></span></p>
-        <p>Balance: <span th:text="${userProfile.balance}"></span></p>
+
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Profile</title>
+        <link rel="stylesheet" href="css/profile.css">
+    </head>
+    <body>
+    <!-- ... ваш код для боковой панели ... -->
+    <div class="sidebar">
+        <!-- Боковая панель -->
+        <div class="sidebar-header">
+            <h2>Welcome, </h2>
+        </div>
+        <div class="sidebar-menu">
+            <a href="/Main" class="sidebar-item">Go to Main</a>
+            <a href="/deposit" class="sidebar-item">Deposit</a>
+            <a href="/translations" class="sidebar-item">My Translations</a>
+            <a href="/withdraw" class="sidebar-item">Withdrawal of Funds</a>
+            <a href="/settings" class="sidebar-item">Settings</a>
+            <a href="/logout" class="sidebar-item logout">Log Out</a>
+        </div>
     </div>
-    <div class="profile-btn">
-        <a href="/Main">Go to Main</a>
+    <div class="container">
+        <h1>User Profile</h1>
+        <div class="profile-info">
+            <div class="field">
+                <div class="profile-info-item">
+                <label>Email:</label>
+                <input type="text" th:value="${userProfile.email}" readonly>
+            </div>    </div>
+            <div class="field">
+                <div class="profile-info-item">
+                <label>Name:</label>
+                <input type="text" th:value="${userProfile.name}" readonly>
+            </div>    </div>
+            <div class="field">
+                <div class="profile-info-item">
+                <label>Surname:</label>
+                <input type="text" th:value="${userProfile.surname}" readonly>
+            </div>    </div>
+            <div class="field">
+                <div class="profile-info-item">
+                <label>Phone:</label>
+                <input type="text" th:value="${userProfile.phone}" readonly>
+            </div>
+            </div>
+            <div class="field">
+                <div class="profile-info-item">
+                <label>Date of Birth:</label>
+                <input type="text" th:value="${userProfile.dob}" readonly>
+            </div>
+            </div>
+            <div class="field">
+                <div class="profile-info-item">
+                <label>Gender:</label>
+                <input type="text" th:value="${userProfile.gender}" readonly>
+            </div>
+            </div>
+            <div class="field">
+                <div class="profile-info-item">
+                <label>Balance:</label>
+                <input type="text" th:value="${userProfile.balance}" readonly>
+            </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <div class="profile-btn">
-        <!-- Добавляем кнопку "Депозит" -->
-        <a href="/deposit" class="btn btn-primary">Депозит</a>
-    </div>
-</div>
-    <div class="logout-btn">
-        <a href="/logout">Logout</a>
-    </div>
-</div>
-<link rel="stylesheet" href="/css/profile.css">
-</body>
-</html>
+    </body>
+    </html>

@@ -7,54 +7,87 @@
     <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
+<div class="sidebar">
+    <!-- Боковая панель -->
+    <div class="sidebar-header">
+        <h2>Welcome, </h2>
+    </div>
+    <div class="sidebar-menu">
+        <a href="/Main" class="sidebar-item">Go to Main</a>
+        <a href="/deposit" class="sidebar-item">Deposit</a>
+        <a href="/translations" class="sidebar-item">My Translations</a>
+        <a href="/withdraw" class="sidebar-item">Withdrawal of Funds</a>
+        <a href="/settings" class="sidebar-item">Settings</a>
+        <a href="/logout" class="sidebar-item logout">Log Out</a>
+    </div>
+</div>
+
 <div class="container">
     <h1>User Profile</h1>
     <form id="profile-form" action="/registerinfo" method="post">
         <div class="profile-info">
-            <div class="profile-info-item">
-                <label for="email">Email:</label>
-                <div id="email"></div>
-            </div>
-            <div class="profile-info-item">
-                <label for="phone">Phone:</label>
-                <input type="text" id="phone" name="phone" value="+380" required pattern="\+380\d{9}">
-            </div>
-            <div class="profile-info-item">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required pattern="[A-Za-zА-Яа-яЁё]{1,}" title="Only letters are allowed">
+            <div class="group-left">
+                <div class="field">
+                    <div class="profile-info-item">
+                        <label for="phone">Phone:</label>
+                        <input type="text" id="phone" name="phone" value="+380" required pattern="\+380\d{9}$">
+
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="profile-info-item">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required pattern="[A-Za-zА-Яа-яЁё]{1,}" title="Only letters are allowed">
+                    </div>
+                </div>
             </div>
             <div class="profile-info-item">
                 <label for="surname">Surname:</label>
                 <input type="text" id="surname" name="surname" required pattern="[A-Za-zА-Яа-яЁё]{1,}" title="Only letters are allowed">
             </div>
-            <div class="profile-info-item">
-                <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" min="1914-01-01" max="2024-12-31" required>
-            </div>
-            <div class="profile-info-item">
-                <label for="gender">Gender:</label>
-                <select id="gender" name="gender" required>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
+            <div class="group-right">
+                <div class="field">
+                    <div class="profile-info-item">
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" name="dob" min="1800-01-01" max="2003-05-13" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="profile-info-item">
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
-        <button type="submit">Save</button>
+        <div class="btn-save">
+            <button type="submit" name="save-btn">Save</button>
+        </div>
+        <style>
+        button {
+        position: relative;
+        width: 8%;
+        height: 40px;
+        background: #0ef;
+        box-shadow: 0 0 10px #0ef;
+        font-size: 16px;
+        color: #000;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 30px;
+        border: none;
+        outline: none;
+        }
+        button:hover{
+            background-color: rgba(0, 238, 255, 0.62);
+        }
+        </style>
     </form>
-    <div class="profile-btn">
-        <a href="/Main">Go to Main</a>
-        <div>
-            <a href="/deposit" class="btn btn-primary">Deposit</a>
-        </div>
-    </div>
-    <div class="profile-info-item">
-        <label for="balance">Balance:</label>
-        <div id="balance"></div>
-    </div>
-    <div class="logout-btn">
-        <a href="/logout">Logout</a>
-    </div>
 </div>
+
 <script>
     document.getElementById('name').addEventListener('input', function(e) {
         e.target.value = e.target.value.replace(/[^A-Za-zА-Яа-яЁё]/g, '');
@@ -62,7 +95,6 @@
             e.target.value = e.target.value[0].toUpperCase() + e.target.value.slice(1);
         }
     });
-
     document.getElementById('surname').addEventListener('input', function(e) {
         e.target.value = e.target.value.replace(/[^A-Za-zА-Яа-яЁё]/g, '');
         if (e.target.value.length > 0) {
@@ -71,13 +103,18 @@
     });
 
     document.getElementById('phone').addEventListener('input', function(e) {
+        // Удаляем все нецифровые символы
         let pureNumbers = e.target.value.replace(/\D/g, '');
+        // Обрезаем первые три цифры, если они соответствуют '380'
         if (pureNumbers.startsWith('380')) {
             pureNumbers = pureNumbers.slice(3);
         }
+        // Ограничиваем длину до 9 цифр
         pureNumbers = pureNumbers.slice(0, 9);
+        // Возвращаем форматированный номер
         e.target.value = '+380' + pureNumbers;
     });
 </script>
+
 </body>
 </html>
