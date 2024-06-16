@@ -82,7 +82,7 @@ public class MainController {
     @GetMapping("/withdraw")
     public String withdraw() {
         return "withdraw";
-    }
+    }///вавава
 
     @PostMapping("/register")
     public String saveUser(@ModelAttribute("user") User user, Model model) {
@@ -91,7 +91,7 @@ public class MainController {
             return null;
         }
         if (userRepository.existsByEmail(user.getEmail())) {
-            model.addAttribute("error", "User with this email already exists");
+            model.addAttribute("error!!", "User with this email already exists");
             return null;
         }
         // Устанавливаем начальный баланс пользователя
