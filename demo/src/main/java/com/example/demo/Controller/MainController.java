@@ -87,7 +87,7 @@ public class MainController {
     @PostMapping("/register")
     public String saveUser(@ModelAttribute("user") User user, Model model) {
         if (userRepository.existsByUsername(user.getUsername())) {
-            model.addAttribute("error", "User with this username already exists");
+            model.addAttribute("error!!!!", "User with this username already exists");
             return null;
         }
         if (userRepository.existsByEmail(user.getEmail())) {
