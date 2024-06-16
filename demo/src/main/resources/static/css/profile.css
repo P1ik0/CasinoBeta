@@ -1,12 +1,9 @@
 body {
-    background-color: #333;
     color: #fff;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center; /* Центрирование содержимого по горизонтали */
-    align-items: center; /* Центрирование содержимого по вертикали */
-    height: 100vh; /* Занимаем 100% высоты видимой области */
-    margin: 0; /* Убираем отступы по умолчанию */
+    background-color: #000036;
+    --fontFamily: "Gilroy", Arial, Helvetica, sans-serif;
+    margin-top: 80px;
+    font-family: var(--fontFamily);
 }
 
 .container {
@@ -71,10 +68,10 @@ body {
     opacity: 0.8;
 }
 /* Стили для боковой панели */
-.sidebar {
-    width: 250px;
+.sidebar-menu2 {
+    width: 350px;
     background-color: #2c3e50;
-    height: 100vh;
+    height: 50vh;
     position: fixed;
     left: 0;
     top: 0;
@@ -82,7 +79,7 @@ body {
 }
 
 .sidebar-header {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .sidebar-menu {
@@ -119,14 +116,19 @@ body {
 }
 /* Стили для боковой панели */
 .sidebar {
-    width: 250px;
-    background-color: #2c3e50;
-    height: 100vh;
     position: fixed;
-    left: 0;
-    top: 0;
+    top: 240px;
+    left: 10px;
+    width: 206px;
+    height: calc(85% - 140px);
+    background-color: #1e2150;
     padding: 20px;
-}
+    box-sizing: border-box;
+    border-radius: 11px;
+    border: 1px solid #343761;
+    color: #bfbfcb;
+    line-height: 2;
+    z-index: 999; /* Установка такого же z-index, как и ранее */}
 
 .sidebar-header {
     padding-bottom: 20px;
@@ -146,9 +148,7 @@ body {
     transition: background-color 0.3s;
 }
 
-.sidebar-item:hover {
-    background-color: #34495e;
-}
+
 
 .logout {
     color: #ecf0f1;
@@ -159,9 +159,6 @@ body {
     transition: background-color 0.3s;
 }
 
-.logout:hover {
-    background-color: #34495e;
-}
 
 /* Стили для основного содержимого */
 .container {

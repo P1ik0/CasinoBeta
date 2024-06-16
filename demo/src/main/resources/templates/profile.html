@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+    <link rel="stylesheet" href="/css/Main.css">
     <link rel="stylesheet" href="css/profile.css">
 </head>
+<div class="top-panel">
+    <a href="/Main"> <!-- Ссылка на главное меню -->
+        <img src="https://casino.ua/minio/logos/logo.svg" alt="Casino Logo" class="logo">
+    </a>
+    <div id="userStatus">
+        <!-- Кнопка "Вход" или "Профиль" добавляется здесь -->
+    </div> <!-- Элемент для отображения статуса пользователя -->
+    <!-- Другие элементы в верхней панели -->
+</div>
 <body>
 <div class="sidebar">
     <!-- Боковая панель -->
     <div class="sidebar-header">
-        <h2>Welcome, </h2>
+        <h2>Welcome</h2>
     </div>
     <div class="sidebar-menu">
         <a href="/Main" class="sidebar-item">Go to Main</a>
@@ -89,20 +99,20 @@
 </div>
 
 <script>
-    document.getElementById('name').addEventListener('input', function(e) {
+    document.getElementById('name').addEventListener('input', function (e) {
         e.target.value = e.target.value.replace(/[^A-Za-zА-Яа-яЁё]/g, '');
         if (e.target.value.length > 0) {
             e.target.value = e.target.value[0].toUpperCase() + e.target.value.slice(1);
         }
     });
-    document.getElementById('surname').addEventListener('input', function(e) {
+    document.getElementById('surname').addEventListener('input', function (e) {
         e.target.value = e.target.value.replace(/[^A-Za-zА-Яа-яЁё]/g, '');
         if (e.target.value.length > 0) {
             e.target.value = e.target.value[0].toUpperCase() + e.target.value.slice(1);
         }
     });
 
-    document.getElementById('phone').addEventListener('input', function(e) {
+    document.getElementById('phone').addEventListener('input', function (e) {
         // Удаляем все нецифровые символы
         let pureNumbers = e.target.value.replace(/\D/g, '');
         // Обрезаем первые три цифры, если они соответствуют '380'
@@ -114,6 +124,47 @@
         // Возвращаем форматированный номер
         e.target.value = '+380' + pureNumbers;
     });
+    <div id="userStatusE"></div>
+
+        // Проверяем, зарегистрирован ли пользователь
+        var userRegistered = true; // Предположим, что пользователь зарегистрирован
+
+        // Функция для обновления статуса пользователя
+        function updateUserStatus() {
+        var userStatusElement = document.getElementById("userStatus");
+        // Проверяем, есть ли уже кнопка "Вход" внутри элемента
+        var loginButton = userStatusElement.querySelector(".login-btn");
+        if (!loginButton) {
+        // Если кнопки "Вход" нет, добавляем ее
+        if (userRegistered) {
+        // Если пользователь зарегистрирован, добавляем кнопку "Профиль"
+        var profileButton = document.createElement("a");
+        profileButton.href = "/profile"; // Замените на ссылку на профиль пользователя
+        profileButton.textContent = "Профиль";
+        profileButton.classList.add("login-btn");
+        userStatusElement.appendChild(profileButton);
+    } else {
+        // Если пользователь не зарегистрирован, добавляем кнопку "Вход"
+        loginButton = document.createElement("a");
+        loginButton.href = "/login"; // Замените на ссылку на страницу входа
+        loginButton.textContent = "Вход";
+        loginButton.classList.add("login-btn");
+        userStatusElement.appendChild(loginButton);
+    }
+    }
+    }
+
+        // Функция для обработки выхода пользователя
+        function userLoggedOut() {
+        // Устанавливаем статус аутентификации в false
+        userRegistered = false;
+        // Обновляем статус пользователя на странице
+        updateUserStatus();
+    }
+
+        // Вызываем функцию для обновления статуса пользователя при загрузке страницы
+        window.onload = updateUserStatus;
+
 </script>
 
 </body>
